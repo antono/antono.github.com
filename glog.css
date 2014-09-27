@@ -1,0 +1,291 @@
+/* line 1, ../sass/_typo.sass */
+body {
+  font-family: "Ubuntu", "Philosopher", "Georgia";
+}
+
+/* line 4, ../sass/_typo.sass */
+h1 {
+  -webkit-mask-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(black), to(rgba(0, 0, 0, 0.6)));
+}
+
+/* line 7, ../sass/_typo.sass */
+h1, h2, h3 {
+  font-family: "Ubuntu", "Philosopher", "Georgia";
+  -webkit-mask-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(black), to(rgba(0, 0, 0, 0.6)));
+}
+
+/* line 13, ../sass/_typo.sass */
+p {
+  font-family: "Ubuntu";
+}
+
+/* line 16, ../sass/_typo.sass */
+blockquote {
+  font-size: 80%;
+  color: #666666;
+  background: #eeeeee;
+  padding: 5px 10px;
+  margin: 0 0 0 20px;
+  font-style: italic;
+  border-left: green 1px dotted;
+}
+
+/* line 1, ../sass/_html5.sass */
+article, aside, dialog, figure, figcaption, footer, header, hgroup, nav, section {
+  display: block;
+}
+
+/* line 4, ../sass/_html5.sass */
+nav li, nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 2, ../sass/_blocks.sass */
+body header, body article, body nav, body footer, body section {
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* line 9, ../sass/_blocks.sass */
+header {
+  text-shadow: #aaaaaa 2px 1px 2px;
+  clear: both;
+  text-align: left;
+  border-bottom: #cccccc 1px solid;
+}
+/* line 14, ../sass/_blocks.sass */
+header a {
+  text-decoration: none;
+  color: #333333;
+}
+/* line 17, ../sass/_blocks.sass */
+header h1 {
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 0;
+  font-size: 250%;
+}
+/* line 22, ../sass/_blocks.sass */
+header h2 {
+  margin-top: 0;
+  color: #555555;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+/* line 31, ../sass/_blocks.sass */
+nav {
+  text-align: center;
+}
+/* line 33, ../sass/_blocks.sass */
+nav ul {
+  width: 80%;
+  margin: 0 auto;
+}
+/* line 36, ../sass/_blocks.sass */
+nav ul li {
+  float: left;
+  margin-right: 10px;
+  width: 20%;
+}
+/* line 40, ../sass/_blocks.sass */
+nav a {
+  text-decoration: none;
+}
+
+/* line 47, ../sass/_blocks.sass */
+article .content {
+  font-size: 1.2em;
+}
+/* line 49, ../sass/_blocks.sass */
+article footer {
+  text-align: right;
+  border-top: none;
+  font-size: 80%;
+  color: #999999;
+}
+/* line 54, ../sass/_blocks.sass */
+article footer a {
+  color: #999999;
+}
+/* line 56, ../sass/_blocks.sass */
+article figure {
+  margin: 0 auto;
+}
+/* line 58, ../sass/_blocks.sass */
+article figure img {
+  clear: both;
+}
+/* line 60, ../sass/_blocks.sass */
+article figure figcaption {
+  clear: both;
+}
+/* line 62, ../sass/_blocks.sass */
+article table {
+  border-collapse: collapse;
+  text-align: left;
+}
+/* line 65, ../sass/_blocks.sass */
+article table th {
+  font-size: 1.1em;
+  font-weight: normal;
+  padding: 10px 8px;
+  border-bottom: 2px solid #bbbbbb;
+}
+/* line 70, ../sass/_blocks.sass */
+article table td {
+  padding: 9px 8px 0px 8px;
+  border-bottom: 1px dotted #cccccc;
+}
+
+/* line 74, ../sass/_blocks.sass */
+pre {
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+/* line 78, ../sass/_blocks.sass */
+pre:hover {
+  overflow: visible;
+}
+
+/* line 84, ../sass/_blocks.sass */
+#archives {
+  margin: 25px auto;
+}
+/* line 86, ../sass/_blocks.sass */
+#archives ul {
+  list-style-type: none;
+}
+/* line 88, ../sass/_blocks.sass */
+#archives ul li {
+  padding: 2px;
+  font-size: 1.3em;
+}
+/* line 91, ../sass/_blocks.sass */
+#archives ul li time {
+  font-size: xx-small;
+  vertical-align: top;
+  color: #777777;
+}
+
+/* line 99, ../sass/_blocks.sass */
+hr {
+  border: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+/* line 105, ../sass/_blocks.sass */
+footer {
+  clear: both;
+  text-align: center;
+  border-top: #cccccc 1px solid;
+}
+/* line 109, ../sass/_blocks.sass */
+footer p {
+  margin: 3px 0;
+  font-size: x-small;
+}
+
+/* line 1, ../sass/_disqus.sass */
+#disqus_thread {
+  margin-top: 15px;
+  border-top: 1px gray solid;
+}
+/* line 4, ../sass/_disqus.sass */
+#disqus_thread .dsq-sharing-options, #disqus_thread .dsq-dc-logo, #disqus_thread .dsq-options, #disqus_thread .dsq-item-trackback, #disqus_thread .dsq-autheneticate-copy {
+  display: none;
+}
+/* line 6, ../sass/_disqus.sass */
+#disqus_thread #dsq-new-post > h3 {
+  display: none;
+}
+/* line 9, ../sass/_disqus.sass */
+#disqus_thread #dsq-authenticate .dsq-login-buttons {
+  padding: 7px 0;
+  display: block;
+  height: 20px;
+}
+/* line 14, ../sass/_disqus.sass */
+#disqus_thread #dsq-content .dsq-login-buttons {
+  background: none;
+  margin-bottom: 0;
+}
+/* line 17, ../sass/_disqus.sass */
+#disqus_thread #dsq-content .dsq-request-user-info {
+  padding: 7px 0;
+  background: none;
+  margin-bottom: 0;
+}
+/* line 21, ../sass/_disqus.sass */
+#disqus_thread #dsq-content .dsq-request-user-info span, #disqus_thread #dsq-content .dsq-request-user-info small {
+  display: none;
+}
+/* line 23, ../sass/_disqus.sass */
+#disqus_thread #dsq-content .dsq-subscribe-menu {
+  background: none;
+}
+/* line 25, ../sass/_disqus.sass */
+#disqus_thread #dsq-comments-title h3 {
+  display: none;
+}
+
+/* line 18, ../sass/glog.sass */
+body {
+  height: 100%;
+  background: #dfdfdf;
+  background-image: url(/images/bg-noise.png);
+  color: #444444;
+  padding: 10px 100px;
+}
+/* line 25, ../sass/glog.sass */
+body:before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  z-index: 100;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* line 38, ../sass/glog.sass */
+section a {
+  color: black;
+  -webkit-transition: color;
+  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-duration: 300ms;
+}
+/* line 43, ../sass/glog.sass */
+section a:visited {
+  color: #444444;
+}
+/* line 45, ../sass/glog.sass */
+section a:hover {
+  color: red;
+}
+
+/* line 48, ../sass/glog.sass */
+menu#top {
+  position: absolute;
+  margin-left: -10em;
+  margin-top: -4em;
+}
+/* line 52, ../sass/glog.sass */
+menu#top li {
+  list-style: none;
+}
+/* line 54, ../sass/glog.sass */
+menu#top a {
+  font-size: 5em;
+  text-decoration: none;
+  color: gray;
+  -webkit-mask-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(black), to(rgba(0, 0, 0, 0.6)));
+}
