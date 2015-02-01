@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Транслитератор для американского посольства</title>
+    <script src="translit.js"></script>
+    <style>
+      .hidden {
+        display: none;
+      }
+      input {
+        width: 30%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="transliterator">
+      <h1>Транслитератор русских имен собственных по правилам Госдепартамента США</h1>
+      <input id="inString"  type="text" placeholder="Текст">
+      <button id="processButton">&rarr;</button>
+      <input id="outString" type="text" placeholder="Результат" disabled>
+      <button id="helpButton">?</button>
+      <p> Вам помог <a href="mailto:antono.vasiljev@gmail.com?subject=Транслитератор">Антон Васильев</a> </p>
+    </section>
+
+    <section id="rules" class="hidden">
+      <h1>Система транслитерации</h1>
+
+      <p>Система транслитерации из кириллического алфавита в латинский алфавит, используемая Госдепартаментом США</p>
+      <table border=1>
+        <tbody>
+          <tr>
+            <th>Кириллица</th>
+            <th>Латиница</th>
+            <th>&nbsp;</th>
+            <th>Кириллица</th>
+            <th>Латиница</th>
+            <th>&nbsp;</th>
+            <th>Кириллица</th>
+            <th>Латиница</th>
+          </tr>
+          <tr>
+            <td>А, а</td>
+            <td>A</td>
+            <td>&nbsp;</td>
+            <td>К, к</td>
+            <td>K</td>
+            <td>&nbsp;</td>
+            <td>Х, х</td>
+            <td>KH</td>
+          </tr>
+          <tr>
+            <td>Б, б</td>
+            <td>B</td>
+            <td>&nbsp;</td>
+            <td>Л, л</td>
+            <td>L</td>
+            <td>&nbsp;</td>
+            <td>Ц, ц</td>
+            <td>TS</td>
+          </tr>
+          <tr>
+            <td>В, в</td>
+            <td>V</td>
+            <td>&nbsp;</td>
+            <td>М, м</td>
+            <td>M</td>
+            <td>&nbsp;</td>
+            <td>Ч, ч</td>
+            <td>CH</td>
+          </tr>
+          <tr>
+            <td>Г, г</td>
+            <td>G</td>
+            <td>&nbsp;</td>
+            <td>Н, н</td>
+            <td>N</td>
+            <td>&nbsp;</td>
+            <td>Ш, ш</td>
+            <td>SH</td>
+          </tr>
+          <tr>
+            <td>Д, д</td>
+            <td>D</td>
+            <td>&nbsp;</td>
+            <td>О, о</td>
+            <td>O</td>
+            <td>&nbsp;</td>
+            <td>Щ, щ</td>
+            <td>SHCH</td>
+          </tr>
+          <tr>
+            <td>Е, е</td>
+            <td>E, YE</td>
+            <td>&nbsp;</td>
+            <td>П, п</td>
+            <td>P</td>
+            <td>&nbsp;</td>
+            <td>ъ</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Ё, e</td>
+            <td>E, YE</td>
+            <td>&nbsp;</td>
+            <td>Р, р</td>
+            <td>R</td>
+            <td>&nbsp;</td>
+            <td>ы</td>
+            <td>Y</td>
+          </tr>
+          <tr>
+            <td>Ж, ж</td>
+            <td>ZH</td>
+            <td>&nbsp;</td>
+            <td>С, с</td>
+            <td>S</td>
+            <td>&nbsp;</td>
+            <td>ь</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>З, з</td>
+            <td>Z</td>
+            <td>&nbsp;</td>
+            <td>Т, т</td>
+            <td>T</td>
+            <td>&nbsp;</td>
+            <td>Э, э</td>
+            <td>E</td>
+          </tr>
+          <tr>
+            <td>И, и</td>
+            <td>I</td>
+            <td>&nbsp;</td>
+            <td>У, у</td>
+            <td>U</td>
+            <td>&nbsp;</td>
+            <td>Ю, ю</td>
+            <td>YU</td>
+          </tr>
+          <tr>
+            <td>Й, й</td>
+            <td>Y</td>
+            <td>&nbsp;</td>
+            <td>Ф, ф</td>
+            <td>F</td>
+            <td>&nbsp;</td>
+            <td>Я, я</td>
+            <td>YA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul>
+        <li>Буква Е русского алфавита транслитерируется в латинский
+          алфавит как YE, если стоит в начале слова, после гласных и
+          знаков Ъ и Ь. Во всех остальных случаях - как E.
+          Например, Евгений=Yevgeniy, Анатольевич=Anatolyevich,
+          Сергеевич=Sergeyevich.</li>
+        <li>Буква Ё транслитерируется как YE, если она стоит в начале
+          слова, после гласных и знаков Ъ и Ь. Во всех остальных
+          случаях - как E. Например, Ёлкин=Yelkin,
+          Планёрная=Planernaya. </li>
+        <li>Буквы Й и Ы транслитерируются как Y в обоих случаях. Например, Быстрый=Bystryy.</li>
+        <li>Буква Ц транслитерируется как TS. Таким же образом, как и буквосочетание ТС. Например, Царёв=Tsarev.</li>
+        <li>Сочетание русских букв КС транслитерируется как KS, а не как X.</li>
+      </ul>
+      
+      <a href="http://moscow.usembassy.gov/transliteration_e.html"> Источник правил транслитерации </a>
+      
+    </section>
+  </body>
+</html>
