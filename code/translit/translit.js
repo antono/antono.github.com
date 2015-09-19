@@ -32,33 +32,34 @@ var charMap = {
   'Ь': '',
   'Э': 'E',
   'Ю': 'YU',
-  'Я': 'YA'
+  'Я': 'YA',
+  'Е': '',
+  'Ё': ''
 };
 
 var validChars = Object.keys(charMap);
+
 var preYe = 'АЕЁИОУЪЫЬЭЮЯ'.split('');
 
 var transliterate = function(input) {
   var result, prev, arr = input.split("");
 
   result = arr.map(function (inChar) {
-    char = inChar.toUpperCase();
+    var char = inChar.toUpperCase();
 
     if (validChars.indexOf(char) === -1) {
       throw Error("Unknown char: " + inChar);
     }
 
+    res = charMap[char];
+
     if (['Е','Ё'].indexOf(char) !== -1) {
       if (!prev || prev === ' ' || preYe.indexOf(prev) != -1) {
-        prev = char;
-        return 'YE';
+        res = 'YE';
       } else {
-        prev = char;
-        return 'E';
+        res = 'E';
       }
     }
-
-    res = charMap[char];
 
     prev = char;
 
