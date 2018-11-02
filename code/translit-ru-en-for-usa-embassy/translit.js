@@ -85,7 +85,7 @@ window.addEventListener("load", function load(event){
 
   document.getElementById('inString').addEventListener('change', processInput);
   document.getElementById('processButton').addEventListener('click', processInput);
-  document.getElementById('helpButton').addEventListener('click', toggleHelp);
+  // document.getElementById('helpButton').addEventListener('click', toggleHelp);
 
   window.removeEventListener("load", load, false); //remove listener, no longer needed
 
