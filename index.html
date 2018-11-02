@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,20 +20,28 @@
         background: #ddd;
         color: #444444;
       }
-      ul {
-        list-style-position: inside;
-      }
 
       main {
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100%;
+      }
+
+      nav#about {
+        align: center;
+      }
+
+      #card figcaption {
+        text-align: center;
+      }
+
+      #card nav {
+        text-align: center;
       }
 
     </style>
-
   </head>
-
   <body>
     <main>
       <section id="card">
@@ -45,13 +52,13 @@
           </figcaption>
         </figure>
 
-        <section id="about">
-          <ul>
-            <li><a href="https://www.facebook.com/ant0no" rel="me"> Facebook </a></li>
-            <li><a href="https://github.com/antono/" rel="me"> Github </a></li>
-            <li><a href="https://www.instagram.com/antono.vasiljev/" rel="me"> Instagram </a></li>
-          </ul>
-        </section>
+        <nav>
+          <a href="https://www.instagram.com/antono.vasiljev/" rel="me">Instagram</a>
+          •
+          <a href="https://github.com/antono/" rel="me">Github</a>
+          •
+          <a href="https://www.facebook.com/ant0no" rel="me">Facebook</a>
+        </nav>
       </section>
     </main>
 
