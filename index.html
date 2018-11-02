@@ -15,21 +15,19 @@
     <title> Привет | Bonvenon | Antono Vasiljev </title>
 
     <style>
-      body {
-        font-family: "Ubuntu", "Philosopher", "Georgia";
-        background: #ddd;
-        color: #444444;
+      html, body {
+        height: 100%;
+        margin: 0;
       }
 
-      main {
+      body {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%;
-      }
 
-      nav#about {
-        align: center;
+        font-family: "Ubuntu", "Philosopher", "Georgia";
+        background: #ddd;
+        color: #444444;
       }
 
       #card figcaption {
@@ -40,13 +38,18 @@
         text-align: center;
       }
 
+      #avatar {
+        clip-path: circle(150px at center);
+      }
     </style>
   </head>
   <body>
     <main>
       <section id="card">
         <figure>
-          <img src="https://en.gravatar.com/userimage/3182379/df7096b8ee9732d45e5d889d37b2bf35.jpg?size=300" alt="Antono Vasiljev" />
+          <a href="https://www.instagram.com/antono.vasiljev/">
+            <img id="avatar" src="https://en.gravatar.com/userimage/3182379/df7096b8ee9732d45e5d889d37b2bf35.jpg?size=300" alt="Antono Vasiljev" />
+          </a>
           <figcaption>
             <h1> Anton Vasiljev </h1>
           </figcaption>
