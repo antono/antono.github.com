@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<script>
+	setInterval(() => {
+		document.writeln(`<p>${Date.now()}: ${document.visibilityState}</p>`);
+	}, 1000)
+
+	document.writeln('<p>' + document.visibilityState + '</p>')
+	</script>
+</head>
+<body>
+	<h1> visibility api test </h1>
+</body>
+</html>
