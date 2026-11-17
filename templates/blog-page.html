@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — {{ trans(key='name', lang=lang) }}{% endblock %}
+{% block description %}{{ page.description | default(value=page.title) }}{% endblock %}
+{% block alternates %}{% set translations = page.translations %}{% include "alternates.html" %}{% endblock %}
+{% block languages %}{% set translations = page.translations %}{% include "translations.html" %}{% endblock %}
+
+{% block body %}
+<div class="wrap">
+  {% include "site-header.html" %}
+  <main>
+    {%- if page.extra.mirror_of %}
+    <p><em>
+      {{ trans(key='mirror_note', lang=lang) }}
+      {%- for t in page.translations %}{% if t.lang == page.extra.mirror_of %}
+      <a href="{{ t.permalink | safe }}" hreflang="{{ t.lang }}">{{ trans(key='language_name', lang=t.lang) }}</a>
+      {%- endif %}{% endfor %}
+    </em></p>
+    {%- endif %}
+
+    <article lang="{{ page.extra.lang | default(value=lang) }}">
+      <h1>{{ page.title }}</h1>
+      <p lang="{{ lang }}">
+        <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+        {%- if page.updated %} · {{ trans(key='updated', lang=lang) }} <time datetime="{{ page.updated }}">{{ page.updated | date(format="%Y-%m-%d") }}</time>{% endif %}
+        {%- if page.taxonomies.tags %} ·
+        {%- for tag in page.taxonomies.tags %}
+        <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=lang) }}">#{{ tag }}</a>
+        {%- endfor %}
+        {%- endif %}
+      </p>
+      {{ page.content | safe }}
+    </article>
+  </main>
+</div>
+{% endblock %}

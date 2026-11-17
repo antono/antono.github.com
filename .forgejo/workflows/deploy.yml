@@ -12,6 +12,8 @@ jobs:
     runs-on: native
     steps:
       - uses: actions/checkout@v4
+      # every post must exist in every language (see the script's docstring)
+      - run: python3 scripts/mirror-translations.py
       - run: zola build
       - name: Upload to Cloudflare Pages
         env:

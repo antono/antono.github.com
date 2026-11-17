@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ trans(key='tags', lang=lang) }} — {{ trans(key='name', lang=lang) }}{% endblock %}
+
+{% block body %}
+<div class="wrap">
+  {% include "site-header.html" %}
+  <main>
+    <h1>{{ trans(key='tags', lang=lang) }}</h1>
+    <ul class="posts">
+      {%- for term in terms %}
+      <li><a href="{{ term.permalink | safe }}">#{{ term.name }}</a> <span>({{ term.pages | length }})</span></li>
+      {%- endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock %}

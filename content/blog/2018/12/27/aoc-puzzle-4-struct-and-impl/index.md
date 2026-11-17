@@ -1,0 +1,73 @@
++++
+title = "AOC: Puzzle 4: struct and impl"
+date = 2018-12-27T22:40:36Z
+updated = 2022-01-25T14:56:51Z
+aliases = ["/r1TJSAGbV/"]
+
+[taxonomies]
+tags = ["rust"]
+
+[extra]
+lang = "en"
+teletype = "https://blog.antono.info/r1TJSAGbV"
++++
+[DISCLAIMER](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+
+Each time i dig into some interesting topic [while solving Advent Of Code puzzles](https://github.com/antono/aoc2018). This time it was rust structs and method implementation for structs.
+
+For tracking guard shift ([see puzzle details](https://github.com/antono/aoc2018/blob/master/src/bin/4.rs#L1)) i introduced ShiftTimeline structure:
+
+```rust
+struct ShiftTimeline {
+    data: Vec<u32>,
+}
+```
+
+The idea was to keep minutes between the guard was sleeping in vector.
+
+> A *struct*, or *structure*, is a custom data type that lets you name and package together multiple related values that make up a meaningful group. If you’re familiar with an object-oriented language, a *struct*is like an object’s data attributes. In this chapter, we’ll compare and contrast tuples with structs, demonstrate how to use structs, and discuss how to define methods and associated functions to specify behavior associated with a struct’s data. Structs and enums (discussed in Chapter 6) are the building blocks for creating new types in your program’s domain to take full advantage of Rust’s compile time type checking.
+
+First i was going to add more properties but after all I left only one. Its does not makes much sense to keep structure for single field... But i decided to keep it in order to group methods around it. Reading the [rust book about methods](https://doc.rust-lang.org/1.30.0/book/second-edition/ch05-03-method-syntax.html):
+
+> *Methods* are similar to functions: they’re declared with the `fn` keyword and their name, they can have parameters and a return value, and they contain some code that is run when they’re called from somewhere else. However, methods are different from functions in that they’re defined within the context of a struct, and their first parameter is always `self`, which represents the instance of the struct the method is being called on.
+
+When used ShiftTimeline structure i found duplicated data initialization code:
+
+```rust
+let timeline = ShiftTimeline { data: Vec::new() };
+```
+
+So implemented simple initializer:
+
+```rust
+struct ShiftTimeline {
+    data: Vec<u32>,
+}
+
+impl ShiftTimeline {
+    fn new() -> ShiftTimeline {
+        ShiftTimeline { data: Vec::new() }
+    }
+}
+```
+
+Now it is possible to use ShiftTimeline::new() to get property initialized. One more method accepting reference to self for write access to structure fields:
+
+```rust
+impl ShiftTimeline {
+
+    ...
+
+    fn record_sleep_time(&mut self, asleep_at: NaiveDateTime, awake_at: NaiveDateTime) {
+       let start_min = asleep_at_time.minute();
+       let end_min = awake_at.minute();
+       for idx in start_min..end_min {
+           self.data.push(idx);
+       }
+    }
+}
+
+...
+
+shift_timeline.record_sleep_time(...)
+```

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{% block description %}{{ trans(key='description', lang=lang) }}{% endblock %}" />
+
+  <link href="{{ get_url(path='favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&amp;family=Philosopher&amp;display=swap" rel="stylesheet" type="text/css" />
+  <link href="{{ get_url(path='style.css', cachebust=true) }}" rel="stylesheet" type="text/css" />
+  <link rel="alternate" type="application/atom+xml" title="{{ trans(key='feed', lang=lang) }}" href="{{ get_url(path='atom.xml', lang=lang) }}" />
+  {%- block alternates %}{% endblock %}
+
+  <title>{% block title %}{{ trans(key='name', lang=lang) }}{% endblock %}</title>
+  {%- block head %}{% endblock %}
+</head>
+
+<body>
+  {% block body %}{% endblock %}
+
+  <nav id="languages" aria-label="{{ trans(key='languages_label', lang=lang) }}">
+    {%- block languages %}
+    {%- for code in ["en", "ru", "eo"] %}
+    {%- if code == lang %}
+    <span lang="{{ code }}" aria-current="page">{{ trans(key='language_name', lang=code) }}</span>
+    {%- else %}
+    <a href="{{ get_url(path='/', lang=code) }}" hreflang="{{ code }}" lang="{{ code }}">{{ trans(key='language_name', lang=code) }}</a>
+    {%- endif %}
+    {%- if not loop.last %} · {% endif %}
+    {%- endfor %}
+    {%- endblock %}
+  </nav>
+</body>
+</html>

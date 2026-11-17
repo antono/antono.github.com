@@ -1,0 +1,198 @@
++++
+title = "Advent of Code in Rust"
+date = 2018-12-09T17:35:42Z
+updated = 2022-04-15T12:13:00Z
+aliases = ["/rysyH35JN/"]
+
+[taxonomies]
+tags = ["rust"]
+
+[extra]
+lang = "en"
+teletype = "https://blog.antono.info/rysyH35JN"
++++
+![](750cae79-3911-480a-aebb-32aaa4d35549.jpeg)
+
+*Photo by [Paul VanDerWerf](https://www.flickr.com/photos/pavdw/) ([CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)) Cropped.*
+
+---
+
+## Motivation
+
+One [smart person](https://github.com/onesk) motivated me to join [Advent of Code](https://adventofcode.com/) challenge.
+
+Here I going to document my travel into Rust programming language. The goal of this blog posts is to make my understanding of rust better as a result of documenting my insights. Making public posts makes me more responsible and forces to think twice and read more docs before publishing in order to look less stupid than I am.
+
+I have basic background in rust making small experiments for myself. In terms of theory I had been reading interesting topics of [The Rust Book](https://doc.rust-lang.org/book/) a year ago.
+
+This post will outline all setup steps i made in order to start. Next posts will probably have less instructions and more personal observations about rust.
+
+---
+
+## Project Layout
+
+First I installed rust using [rustup](https://rustup.rs/) tool. Easy one liner to get all i need.
+
+Next i generated new project using awesome [cargo](https://doc.rust-lang.org/cargo/) tool:
+
+```
+cargo new aoc2018
+cd aoc2018
+tree .
+.
+├── Cargo.toml
+└── src
+    └── main.rs
+
+1 directory, 2 files
+```
+
+Cargo is a built in package manager and build tool for Rust. It has more functionality than other package managers i used (gem, bundler, npm, pip). Here is incomplete list of tasks cargo can do for you:
+
+- Generate new project
+- Build your project and run tests
+- Manage project dependencies specified in Cargo.toml
+- Publish your package on [crates.io](https://crates.io/)
+- Format your code
+
+Other languages provide different tools for above mentioned tasks but approach taken by rust team makes it really easy to start without all those problems with moving parts.
+
+Default generated code contains "Hello World" program and its as easy to run as:
+
+```
+cargo run  
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running `target/debug/aoc2018`
+Hello, world!
+```
+
+Next I going to change my project layout to have one binary output for each puzzle.
+
+[Section about project layout](https://doc.rust-lang.org/cargo/guide/project-layout.html) in Cargo Book says that binaries should go to src/bin/\*.rs.
+
+Reorganizing the project:
+
+```
+cd src 
+mkdir bin 
+mv main.rs bin/1.rs
+cd ../../
+cargo run
+   Compiling aoc2018 v0.1.0 (file:///private/tmp/aoc2018)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.33 secs
+     Running `/private/tmp/aoc2018/target/debug/1`
+Hello, world!
+```
+
+## Puzzle #1
+
+It's time to get into code.
+
+Making long story short: you getting list of newline separated numbers prefixed with plus or minus signs. Solution is sum of them. Input looks like:
+
+```
++13
++9
++8
++1
+-15
++10
+...
+```
+
+I pasted this input to inputs/1.txt in root of the project. I going to put all inputs to the folder and want to create universal function to read these files. I'm too lazy to read the api docs but google gives [good example from rust book](https://doc.rust-lang.org/1.30.0/book/second-edition/ch12-02-reading-a-file.html).
+
+Tailoring example to my needs:
+
+```rust
+use std::fs::File;
+use std::io::prelude::*;
+
+fn read_puzzle_input(number: u8) -> String {
+    let mut input =
+        File::open(format!("./inputs/{}.txt", number))
+            .expect("Puzzle input not found...");
+    let mut text = String::new();
+
+    input
+        .read_to_string(&mut text)
+        .expect("cannot read input file");
+
+    return text;
+}
+```
+
+Ok. Now i going to iterate over lines, parse them and sum. Luckily rust has built in [*lines()* method on String](https://doc.rust-lang.org/std/string/struct.String.html#method.lines). This method returns [Lines iterator](https://doc.rust-lang.org/std/str/struct.Lines.html) which can be used in loops:
+
+```rust
+fn main() {
+    let input = read_puzzle_input(1);
+
+    for line in input.lines() {
+        println!("{}", result);
+    }
+}
+```
+
+It was easy. Time to parse numbers. My first idea was to get sign from each line at position 0 and parse the rest of the string as integer. Then using [match keyword](https://doc.rust-lang.org/rust-by-example/flow_control/match.html) either add or subtract from some variable. When i tried to parse integers i found that rust has [str::parse](https://doc.rust-lang.org/std/primitive.str.html#method.parse) method that converts strings to other types. Even easier than i thought!
+
+```rust
+fn main() {
+    let input = read_puzzle_input(1);
+    let mut result: i32 = 0;
+
+    for line in input.lines() {
+        let num = line.parse::<i32>().unwrap();
+        result += num;
+    }
+
+    println!("{}", result);
+}
+```
+
+Running the code:
+
+```
+ cargo run
+   Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.92 secs
+     Running `target/debug/1`
+493
+```
+
+It works. Result accepted and i got first star in the challenge.
+
+Awesome!
+
+My [code published on GitHub](https://github.com/antono/aoc2018) if someone cares.
+
+---
+
+## Things to investigate
+
+Some things in code still need to be explained to myself.
+
+File::open() will throw compilation error without .expect()
+
+```rust
+File::open(filename).expect("error message");
+```
+
+Parse function will throw compilation error without .unwrap() call.
+
+```rust
+line.parse::<i32>().unwrap();
+```
+
+Using File looks obvious but why should i use prelude?
+
+```rust
+use std::fs::File;
+use std::io::prelude::*;
+```
+
+I will document the answers in my next posts.
+
+---
+
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)

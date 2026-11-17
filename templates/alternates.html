@@ -1,0 +1,3 @@
+{%- for t in translations %}
+  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ t.permalink | safe }}" />
+{%- endfor %}

@@ -1,39 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ lang }}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="{{ trans(key='description', lang=lang) }}" />
+{% extends "base.html" %}
 
-  <link href="{{ get_url(path='favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&amp;family=Philosopher&amp;display=swap" rel="stylesheet" type="text/css" />
-  {%- for t in section.translations %}
-  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ t.permalink | safe }}" />
-  {%- endfor %}
-  <link rel="alternate" hreflang="x-default" href="{{ config.base_url | safe }}/" />
+{% block alternates %}{% set translations = section.translations %}{% include "alternates.html" %}{% endblock %}
+{% block languages %}{% set translations = section.translations %}{% include "translations.html" %}{% endblock %}
 
-  <title>{{ trans(key='name', lang=lang) }}</title>
-
+{% block head %}
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
     body {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      font-family: "Ubuntu", "Philosopher", sans-serif;
-      background: #ddd;
-      color: #444444;
     }
 
     #card figcaption,
-    #card nav,
-    #languages {
+    #card nav {
       text-align: center;
     }
 
@@ -43,19 +24,10 @@
       height: auto;
       border-radius: 50%;
     }
-
-    #languages {
-      margin-top: 2em;
-      font-size: 0.9em;
-    }
-
-    #languages [aria-current] {
-      font-weight: bold;
-    }
   </style>
-</head>
+{% endblock %}
 
-<body>
+{% block body %}
   <main>
     <section id="card">
       <figure>
@@ -75,23 +47,8 @@
         •
         <a href="https://soundcloud.com/an_vas" rel="me">SoundCloud</a>
         •
-        <a href="https://blog.antono.info/" rel="me">{{ trans(key='blog', lang=lang) }}</a>
+        <a href="{{ get_url(path='@/blog/_index.md', lang=lang) }}">{{ trans(key='blog', lang=lang) }}</a>
       </nav>
     </section>
   </main>
-
-  <nav id="languages" aria-label="{{ trans(key='languages_label', lang=lang) }}">
-    {%- for code in ["en", "ru", "eo"] %}
-    {%- for t in section.translations %}
-    {%- if t.lang != code %}
-    {%- elif t.lang == lang %}
-    <span lang="{{ t.lang }}" aria-current="page">{{ trans(key='language_name', lang=t.lang) }}</span>
-    {%- else %}
-    <a href="{{ t.permalink | safe }}" hreflang="{{ t.lang }}" lang="{{ t.lang }}">{{ trans(key='language_name', lang=t.lang) }}</a>
-    {%- endif %}
-    {%- endfor %}
-    {%- if not loop.last %} · {% endif %}
-    {%- endfor %}
-  </nav>
-</body>
-</html>
+{% endblock %}

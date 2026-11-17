@@ -1,0 +1,9 @@
+  <ul class="posts">
+    {%- for p in pages %}
+    <li>
+      <time datetime="{{ p.date }}">{{ p.date | date(format="%Y-%m-%d") }}</time>
+      <a href="{{ p.permalink | safe }}" lang="{{ p.extra.lang | default(value=lang) }}">{{ p.title }}</a>
+      {%- if p.extra.mirror_of %} <span>({{ trans(key='language_name_' ~ p.extra.mirror_of, lang=lang) }})</span>{% endif %}
+    </li>
+    {%- endfor %}
+  </ul>

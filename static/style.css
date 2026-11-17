@@ -1,0 +1,40 @@
+/* Minimal styles matching the home page. Real design comes later. */
+
+html, body {
+  margin: 0;
+}
+
+body {
+  font-family: "Ubuntu", "Philosopher", sans-serif;
+  background: #ddd;
+  color: #444444;
+}
+
+#languages {
+  text-align: center;
+  margin: 2em 0;
+}
+
+#languages [aria-current] {
+  font-weight: bold;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.posts {
+  list-style: none;
+  padding: 0;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+}
+
+article pre {
+  overflow-x: auto;
+}

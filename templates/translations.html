@@ -1,0 +1,14 @@
+{# Language switcher and hreflang links for anything that has `translations`
+   (pages and sections). Usage: {% include "translations.html" %} with
+   `translations` set. #}
+{%- for code in ["en", "ru", "eo"] %}
+{%- for t in translations %}
+{%- if t.lang != code %}
+{%- elif code == lang %}
+<span lang="{{ code }}" aria-current="page">{{ trans(key='language_name', lang=code) }}</span>
+{%- else %}
+<a href="{{ t.permalink | safe }}" hreflang="{{ code }}" lang="{{ code }}">{{ trans(key='language_name', lang=code) }}</a>
+{%- endif %}
+{%- endfor %}
+{%- if not loop.last %} · {% endif %}
+{%- endfor %}

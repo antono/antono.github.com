@@ -1,0 +1,79 @@
++++
+title = "AOC: Sharing code in Rust"
+date = 2018-12-12T10:56:19Z
+updated = 2018-12-12T11:12:21Z
+aliases = ["/rkoLYw01V/"]
+
+[taxonomies]
+tags = ["rust", "aoc"]
+
+[extra]
+lang = "en"
+teletype = "https://blog.antono.info/rkoLYw01V"
++++
+After first puzzle in advent of code i found a function that can be reused:
+
+```
+use std::fs::File;
+use std::io::prelude::*;
+
+// TODO: Share between puzzles...
+fn read_puzzle_input(number: u8) -> String {
+    let mut input =
+        File::open(format!("./inputs/{}.txt", number))
+              .expect("Puzzle input not found...");
+
+    let mut text = String::new();
+
+    input
+        .read_to_string(&mut text)
+        .expect("cannot read input file");
+
+    return text;
+}
+```
+
+I going to move this function to separate file and then somehow reuse in [all my solutions](https://github.com/antono/aoc2018). Quick googling leads to "[Using Modules to Reuse and Organize Code](https://doc.rust-lang.org/1.30.0/book/second-edition/ch07-00-modules.html)" of The Rust Book.
+
+> what happens if you have too many functions? Rust has a module system that enables the reuse of code in an organized fashion.
+
+Nice! Two important things from first page:
+
+- By default, functions, types, constants, and modules are private. The `pub` keyword makes an item public and therefore visible outside its namespace.
+- The `use` keyword brings modules, or the definitions inside modules, into scope so it’s easier to refer to them.
+
+Rust has pretty flexible module layout and there are some rules for module organization. For my simple case i just made following steps:
+
+1. Moved function to external file \`src/utils.rs\`
+2. prefixed function with pub keyword: pub fn read_puzzle_input...
+3. and added small snippet to Cargo.toml:
+
+```
+[lib]
+name = "utils"
+path = "src/utils.rs"
+```
+
+Now in order to use functions from this library i need added crate declaration to top of my file and prefixed function call with utils namespace:
+
+```
+extern crate utils;
+
+fn part_one() {
+    let input = utils::read_puzzle_input(1);
+    let mut result: i32 = 0;
+
+    for line in input.lines() {
+        let num = line.parse::<i32>().unwrap();
+        result += num;
+    }
+
+    println!("Sum of freq adjustments: {}", result);
+}
+```
+
+[The Code](https://github.com/antono/aoc2018).
+
+---
+
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ trans(key='blog', lang=lang) }} — {{ trans(key='name', lang=lang) }}{% endblock %}
+{% block description %}{{ trans(key='blog_description', lang=lang) }}{% endblock %}
+{% block alternates %}{% set translations = section.translations %}{% include "alternates.html" %}{% endblock %}
+{% block languages %}{% set translations = section.translations %}{% include "translations.html" %}{% endblock %}
+
+{% block body %}
+<div class="wrap">
+  {% include "site-header.html" %}
+  <main>
+    <h1>{{ trans(key='blog', lang=lang) }}</h1>
+    <p>
+      {{ trans(key='blog_description', lang=lang) }} ·
+      <a href="{{ get_url(path='atom.xml', lang=lang) }}">{{ trans(key='feed', lang=lang) }}</a> ·
+      <a href="{{ get_url(path='tags/', lang=lang) }}">{{ trans(key='tags', lang=lang) }}</a>
+    </p>
+    {% set pages = section.pages %}{% include "post-list.html" %}
+  </main>
+</div>
+{% endblock %}
