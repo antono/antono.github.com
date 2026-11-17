@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ trans(key='description', lang=lang) }}" />
+
+  <link href="{{ get_url(path='favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&amp;family=Philosopher&amp;display=swap" rel="stylesheet" type="text/css" />
+  {%- for t in section.translations %}
+  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ t.permalink | safe }}" />
+  {%- endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ config.base_url | safe }}/" />
+
+  <title>{{ trans(key='name', lang=lang) }}</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      font-family: "Ubuntu", "Philosopher", sans-serif;
+      background: #ddd;
+      color: #444444;
+    }
+
+    #card figcaption,
+    #card nav,
+    #languages {
+      text-align: center;
+    }
+
+    #avatar {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    #languages {
+      margin-top: 2em;
+      font-size: 0.9em;
+    }
+
+    #languages [aria-current] {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section id="card">
+      <figure>
+        <a href="https://mastodon.social/@antono">
+          <img id="avatar" src="https://en.gravatar.com/userimage/3182379/df7096b8ee9732d45e5d889d37b2bf35.jpg?size=300"
+            width="300" height="300" alt="{{ trans(key='name', lang=lang) }}" />
+        </a>
+        <figcaption>
+          <h1>{{ trans(key='name', lang=lang) }}</h1>
+        </figcaption>
+      </figure>
+
+      <nav>
+        <a rel="me" href="https://mastodon.social/@antono">Mastodon</a>
+        •
+        <a href="https://github.com/antono/" rel="me">GitHub</a>
+        •
+        <a href="https://soundcloud.com/an_vas" rel="me">SoundCloud</a>
+        •
+        <a href="https://blog.antono.info/" rel="me">{{ trans(key='blog', lang=lang) }}</a>
+      </nav>
+    </section>
+  </main>
+
+  <nav id="languages" aria-label="{{ trans(key='languages_label', lang=lang) }}">
+    {%- for code in ["en", "ru", "eo"] %}
+    {%- for t in section.translations %}
+    {%- if t.lang != code %}
+    {%- elif t.lang == lang %}
+    <span lang="{{ t.lang }}" aria-current="page">{{ trans(key='language_name', lang=t.lang) }}</span>
+    {%- else %}
+    <a href="{{ t.permalink | safe }}" hreflang="{{ t.lang }}" lang="{{ t.lang }}">{{ trans(key='language_name', lang=t.lang) }}</a>
+    {%- endif %}
+    {%- endfor %}
+    {%- if not loop.last %} · {% endif %}
+    {%- endfor %}
+  </nav>
+</body>
+</html>

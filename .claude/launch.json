@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zola",
+      "runtimeExecutable": "nix",
+      "runtimeArgs": ["run", "nixpkgs#zola", "--", "serve", "--port", "1111"],
+      "port": 1111
+    }
+  ]
+}

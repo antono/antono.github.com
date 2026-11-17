@@ -1,0 +1,32 @@
+base_url = "https://antono.info"
+title = "Anton Vasiljev"
+default_language = "en"
+compile_sass = false
+build_search_index = false
+
+[translations]
+name = "Anton Vasiljev"
+description = "Anton Vasiljev — personal page with links to Mastodon, GitHub, SoundCloud and blog."
+blog = "Blog"
+language_name = "English"
+languages_label = "Language"
+
+[languages.ru]
+title = "Антон Васильев"
+
+[languages.ru.translations]
+name = "Антон Васильев"
+description = "Антон Васильев — личная страница со ссылками на Mastodon, GitHub, SoundCloud и блог."
+blog = "Блог"
+language_name = "Русский"
+languages_label = "Язык"
+
+[languages.eo]
+title = "Antono Vasiljev"
+
+[languages.eo.translations]
+name = "Antono Vasiljev"
+description = "Antono Vasiljev — persona paĝo kun ligiloj al Mastodon, GitHub, SoundCloud kaj blogo."
+blog = "Blogo"
+language_name = "Esperanto"
+languages_label = "Lingvo"
