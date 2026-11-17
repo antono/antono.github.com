@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset='utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Anton Vasiljev — personal page with links to Mastodon, GitHub, SoundCloud and blog." />
 
   <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
-  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
+  <link href='https://fonts.googleapis.com/css2?family=Ubuntu&amp;family=Philosopher&amp;display=swap' rel='stylesheet' type='text/css' />
 
-  <link href='http://launchpad.net/~antono' rel='me' type='text/html' />
-  <link href='https://login.launchpad.net/+openid' rel='openid.server' />
-  <link href='https://login.launchpad.net/+id/wzJTAcY' rel='openid.delegate' />
-  <link href='https://login.launchpad.net/+openid' rel='openid2.provider' />
-  <link href='https://login.launchpad.net/+id/wzJTAcY' rel='openid2.local_id' />
-
-  <title> Anton Vasiljev </title>
+  <title>Anton Vasiljev</title>
 
   <style>
     html, body {
@@ -25,7 +21,7 @@
       align-items: center;
       justify-content: center;
 
-      font-family: "Ubuntu", "Philosopher", "Georgia";
+      font-family: "Ubuntu", "Philosopher", sans-serif;
       background: #ddd;
       color: #444444;
     }
@@ -39,7 +35,10 @@
     }
 
     #avatar {
-      clip-path: circle(150px at center);
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -50,37 +49,23 @@
       <figure>
         <a href="https://mastodon.social/@antono">
           <img id="avatar" src="https://en.gravatar.com/userimage/3182379/df7096b8ee9732d45e5d889d37b2bf35.jpg?size=300"
-            alt="Antono Vasiljev" />
+            width="300" height="300" alt="Anton Vasiljev" />
         </a>
         <figcaption>
-          <h1> Anton Vasiljev </h1>
+          <h1>Anton Vasiljev</h1>
         </figcaption>
       </figure>
 
       <nav>
         <a rel="me" href="https://mastodon.social/@antono">Mastodon</a>
         •
-        <a href="https://github.com/antono/" rel="me">Github</a>
+        <a href="https://github.com/antono/" rel="me">GitHub</a>
         •
-        <a href="https://soundcloud.com/an_vas" rel="me">Soundcloud</a>
+        <a href="https://soundcloud.com/an_vas" rel="me">SoundCloud</a>
         •
         <a href="https://blog.antono.info/" rel="me">Blog</a>
       </nav>
     </section>
   </main>
-
-  <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost +
-      "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-
-  <script type="text/javascript">
-    try {
-      var pageTracker = _gat._getTracker("UA-1833850-1");
-      pageTracker._trackPageview();
-    } catch (err) {}
-  </script>
-
 </body>
 </html>
