@@ -6,16 +6,9 @@
 {% block languages %}{% set translations = section.translations %}{% include "translations.html" %}{% endblock %}
 
 {% block body %}
-<div class="wrap">
-  {% include "site-header.html" %}
   <main>
     <h1>{{ trans(key='blog', lang=lang) }}</h1>
-    <p>
-      {{ trans(key='blog_description', lang=lang) }} ·
-      <a href="{{ get_url(path='atom.xml', lang=lang) }}">{{ trans(key='feed', lang=lang) }}</a> ·
-      <a href="{{ get_url(path='tags/', lang=lang) }}">{{ trans(key='tags', lang=lang) }}</a>
-    </p>
+    <p class="lead">{{ trans(key='blog_description', lang=lang) }}</p>
     {% set pages = section.pages %}{% include "post-list.html" %}
   </main>
-</div>
 {% endblock %}

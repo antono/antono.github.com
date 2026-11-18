@@ -3,7 +3,7 @@
 
     python3 scripts/teletype-import.py https://blog.antono.info [uri ...]
 
-Each post becomes content/blog/YYYY/MM/DD/<slug>/index.md (+ its images).
+Each post becomes content/blog/YYYY/MM/DD/<slug>/index.en.md (+ its images).
 The date is the UTC publication date. Teletype's article JSON is read from the
 `window.__INITIAL_STATE__` blob embedded in every post page, so this needs no
 API token. Run scripts/mirror-translations.py afterwards.
@@ -118,7 +118,7 @@ def code_span(s: str) -> str:
 
 class Renderer:
     def __init__(self, link_map, topic_map, images):
-        self.link_map = link_map  # old URL path (uri) -> "@/blog/.../index.md"
+        self.link_map = link_map  # old URL path (uri) -> "@/blog/.../index.en.md"
         self.topic_map = topic_map  # topic_id -> tag slug
         self.images = images  # list of (url, filename) to download
 
@@ -169,7 +169,7 @@ class Renderer:
         url = url.strip()  # browsers ignore surrounding whitespace in href
         m = re.match(r"^https?://blog\.antono\.info/?\?topic_id=(\d+)$", url)
         if m:
-            return f"/tags/{self.topic_map[m.group(1)]}/"
+            return f"/en/tags/{self.topic_map[m.group(1)]}/"
         m = re.match(r"^https?://blog\.antono\.info/([^/?#]+)/?(?:\?cda=.*)?$", url)
         if m and m.group(1) in self.link_map:
             return self.link_map[m.group(1)]
@@ -204,6 +204,7 @@ class Renderer:
             return "\n".join("> " + line if line else ">" for line in text.split("\n"))
         if tag == "pre":
             code = n.text().replace(" ", " ").rstrip("\n")
+            code = "\n".join(l.rstrip() for l in code.split("\n"))  # trailing spaces cause horizontal scroll
             n_ticks = max((len(m) for m in re.findall(r"`{3,}", code)), default=2) + 1
             fence = "`" * n_ticks
             return f"{fence}{n.attrs.get('lang', '')}\n{code}\n{fence}"
@@ -271,7 +272,7 @@ def main():
         for uri, a in articles.items()
     }
     link_map = {
-        uri: "@/" + str(post_dir(a, slugs[uri]).relative_to(ROOT / "content")) + "/index.md"
+        uri: "@/" + str(post_dir(a, slugs[uri]).relative_to(ROOT / "content")) + "/index.en.md"
         for uri, a in articles.items()
     }
     topic_map = {}
@@ -303,7 +304,7 @@ def main():
 
         out = post_dir(a, slugs[uri])
         out.mkdir(parents=True, exist_ok=True)
-        (out / "index.md").write_text("\n".join(fm) + body, encoding="utf-8")
+        (out / "index.en.md").write_text("\n".join(fm) + body, encoding="utf-8")
         for src, name in images:
             if not (out / name).exists():
                 (out / name).write_bytes(fetch(src))

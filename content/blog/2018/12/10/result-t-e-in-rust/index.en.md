@@ -13,7 +13,7 @@ teletype = "https://blog.antono.info/r1YKGw3y4"
 +++
 ![](475510fa-92f5-486d-a41a-d3c9da93d97b.jpeg)
 
-In my [first puzzle in advent of code challenge](@/blog/2018/12/09/advent-of-code-in-rust/index.md) I used some copy/pasted rust code which was not completely clear to me... It's time to understand the code and document it here.
+In my [first puzzle in advent of code challenge](@/blog/2018/12/09/advent-of-code-in-rust/index.en.md) I used some copy/pasted rust code which was not completely clear to me... It's time to understand the code and document it here.
 
 I talking about .expect and .unwrap() methods.
 
@@ -67,7 +67,7 @@ Only one branch will be executed depending on operation result.
 
 So what is purpose of **.expect()** in this code?
 
-```
+```rust
 File::open(filename).expect("error message");
 ```
 
@@ -111,4 +111,4 @@ So difference from expect is only that expect takes additional error message.
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

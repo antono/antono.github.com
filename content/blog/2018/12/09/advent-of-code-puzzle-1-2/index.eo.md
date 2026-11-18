@@ -124,7 +124,7 @@ fn part_two() {
 
 Rulado de la kodo:
 
-```
+```console
 cargo run
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs

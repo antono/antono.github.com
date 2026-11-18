@@ -17,7 +17,7 @@ teletype = "https://blog.antono.info/Syuxv7s1E"
 
 ---
 
-This disclaimer related to [Advent of code posts](/tags/aoc/) i publishing in this blog.
+This disclaimer related to [Advent of code posts](/en/tags/aoc/) i publishing in this blog.
 
 In those posts I going to document my travel into Rust programming language. The goal of these blog posts is to make my understanding of rust better as a result of documenting my findings and insights. Making public posts makes me more responsible: forces to think twice and read more docs before publishing in order to look less stupid than I am.
 

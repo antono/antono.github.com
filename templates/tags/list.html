@@ -3,15 +3,12 @@
 {% block title %}{{ trans(key='tags', lang=lang) }} — {{ trans(key='name', lang=lang) }}{% endblock %}
 
 {% block body %}
-<div class="wrap">
-  {% include "site-header.html" %}
   <main>
     <h1>{{ trans(key='tags', lang=lang) }}</h1>
-    <ul class="posts">
+    <ul class="tags">
       {%- for term in terms %}
-      <li><a href="{{ term.permalink | safe }}">#{{ term.name }}</a> <span>({{ term.pages | length }})</span></li>
+      <li><a href="{{ term.permalink | safe }}">#{{ term.name }} <span>{{ term.pages | length }}</span></a></li>
       {%- endfor %}
     </ul>
   </main>
-</div>
 {% endblock %}

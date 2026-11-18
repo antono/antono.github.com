@@ -30,7 +30,7 @@ teletype = "https://blog.antono.info/rJyKtUCbV"
 - [cargo-tree](https://github.com/sfackler/cargo-tree) — выводит дерево зависимостей, прямо как \`npm ls\`
 - [cargo-audit](https://github.com/RustSec/cargo-audit) — проверяет Cargo.lock на крейты с известными уязвимостями
 
-```
+```console
 $ cargo install cargo-count
 ... skip ...
 $ cargo count --all --language rs
@@ -42,12 +42,12 @@ Gathering information...
 Totals:            7      1324   197     423       704
 ```
 
-```
+```console
 $ cargo install cargo-tree
 ... skip ...
 $ cargo tree
 
-aoc2018 v0.1.0 (/Users/antono/Code/rust/aoc2018)                                                                                                       
+aoc2018 v0.1.0 (/Users/antono/Code/rust/aoc2018)
 ├── chrono v0.4.6
 │   ├── num-integer v0.1.39
 │   │   └── num-traits v0.2.6

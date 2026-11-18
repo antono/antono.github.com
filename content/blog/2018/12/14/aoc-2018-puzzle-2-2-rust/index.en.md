@@ -33,12 +33,12 @@ solution = hash.values.find { |arr| arr.any? }
 
 def combinations_with_1_char_replaced(original)
     result = []
-    
+
     original.len.times |idx|
          id_as_array = original.clone()
          id_as_array[idx0] = 0
          result.push(id_as_array.join)
-   
+
     return result
 ```
 
@@ -106,7 +106,7 @@ fn all_valiants_with_1_letter_replaced(id: &str) -> Vec<String> {
 
 Running the code:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
 warning: unused manifest key: package.edition
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
@@ -132,4 +132,4 @@ Removing 0 from hash key: "cvgywxqubnuaefmsljdrpfzyi". Submitting.
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

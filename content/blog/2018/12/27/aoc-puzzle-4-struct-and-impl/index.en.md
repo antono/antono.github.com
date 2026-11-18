@@ -11,7 +11,7 @@ tags = ["rust"]
 lang = "en"
 teletype = "https://blog.antono.info/r1TJSAGbV"
 +++
-[DISCLAIMER](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[DISCLAIMER](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)
 
 Each time i dig into some interesting topic [while solving Advent Of Code puzzles](https://github.com/antono/aoc2018). This time it was rust structs and method implementation for structs.
 

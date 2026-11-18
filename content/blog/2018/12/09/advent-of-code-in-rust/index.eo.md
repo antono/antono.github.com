@@ -34,7 +34,7 @@ Unue mi instalis Rust per la ilo [rustup](https://rustup.rs/). Unu simpla komand
 
 Poste mi generis novan projekton per la bonega ilo [cargo](https://doc.rust-lang.org/cargo/):
 
-```
+```console
 cargo new aoc2018
 cd aoc2018
 tree .
@@ -58,8 +58,8 @@ Aliaj lingvoj havas apartajn ilojn por ĉiuj ĉi taskoj, sed la aliro de la Rust
 
 La defaŭlte generita kodo estas programo „Hello World“, kaj ruli ĝin estas tiel facile:
 
-```
-cargo run  
+```console
+cargo run
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
      Running `target/debug/aoc2018`
 Hello, world!
@@ -71,9 +71,9 @@ La [sekcio pri strukturo de projekto](https://doc.rust-lang.org/cargo/guide/proj
 
 Reorganizo de la projekto:
 
-```
-cd src 
-mkdir bin 
+```console
+cd src
+mkdir bin
 mv main.rs bin/1.rs
 cd ../../
 cargo run
@@ -89,7 +89,7 @@ Jam tempas ekkodi.
 
 Mallonge: vi ricevas liston de nombroj, po unu en linio, ĉiu kun antaŭa plus- aŭ minus-signo. La solvo estas ilia sumo. La enigo aspektas jene:
 
-```
+```text
 +13
 +9
 +8
@@ -151,7 +151,7 @@ fn main() {
 
 Rulado de la kodo:
 
-```
+```console
  cargo run
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.92 secs

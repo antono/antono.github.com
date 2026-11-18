@@ -13,7 +13,7 @@ teletype = "https://blog.antono.info/rkoLYw01V"
 +++
 After first puzzle in advent of code i found a function that can be reused:
 
-```
+```rust
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -48,7 +48,7 @@ Rust has pretty flexible module layout and there are some rules for module organ
 2. prefixed function with pub keyword: pub fn read_puzzle_input...
 3. and added small snippet to Cargo.toml:
 
-```
+```toml
 [lib]
 name = "utils"
 path = "src/utils.rs"
@@ -56,7 +56,7 @@ path = "src/utils.rs"
 
 Now in order to use functions from this library i need added crate declaration to top of my file and prefixed function call with utils namespace:
 
-```
+```rust
 extern crate utils;
 
 fn part_one() {
@@ -76,4 +76,4 @@ fn part_one() {
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

@@ -1,3 +1,3 @@
-{%- for t in translations %}
-  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ t.permalink | safe }}" />
+{%- for t in translations %}{% if not (t.lang == "eo" and "content/_index.eo.md" in t.path) %}
+  <link rel="alternate" hreflang="{% if t.lang == "und" %}eo{% else %}{{ t.lang }}{% endif %}" href="{{ t.permalink | safe }}" />{% endif %}
 {%- endfor %}

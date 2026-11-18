@@ -14,7 +14,7 @@ teletype = "https://blog.antono.info/rJlqpIRJ4"
 
 Решаю на Rust [вторую задачку Advent of Code](https://adventofcode.com/2018/day/2). Задачка довольно простая. Входные данные выглядят так:
 
-```
+```text
 mvgowxqubnhaefjslkjlrptzyi
 pvgowlqubnhaefmslkjdrpteyi
 ovgowoqubnhaefmslkjnrptzyi
@@ -30,7 +30,7 @@ cvgowxqubnhjeflslkjgrptzyi
 
 На псевдокоде решение выглядело бы примерно так:
 
-```
+```python
 for line in input
    counters = count_letters(line)
 
@@ -48,7 +48,7 @@ print seen_two_letters * seen_three_letters
 
 Теперь на Rust. Особо не заморачиваясь с оптимизацией, буду хранить количество каждого символа в строке в векторе из [HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html). Потом пройдусь по ним и посчитаю хеши, у которых среди значений есть 2 или 3.
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -70,10 +70,10 @@ fn part_one() {
 
 Запускаем:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:57:32
    |
@@ -85,7 +85,7 @@ also borrowed as immutable
 59 |             };
    |             - immutable borrow ends here
 
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:58:25
    |
@@ -119,7 +119,7 @@ To learn more, run the command again with --verbose.
 
 Буду вызывать его, когда достаю значение из хеша:
 
-```
+```rust
 fn part_one() {
     let input = utils::read_puzzle_input(2);
 
@@ -140,7 +140,7 @@ fn part_one() {
 
 Запускаем:
 
-```
+```console
 cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs
@@ -162,7 +162,7 @@ cargo run --bin 2
 
 Заработало. Смущает только, что приходится каждый раз копировать значение, лишь бы не заимствовать его на чтение. Один умный человек подсказал мне [HashMap#entry()](https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.entry): он отдаёт Entry, через который значение в хеше можно менять прямо на месте. У самого Entry куча полезных методов. [Entry#and_modify()](https://doc.rust-lang.org/std/collections/hash_map/enum.Entry.html#method.and_modify) — ровно то, что мне нужно. Пример из документации:
 
-```
+```rust
 use std::collections::HashMap;
 
 let mut map: HashMap<&str, u32> = HashMap::new();
@@ -176,7 +176,7 @@ assert_eq!(map["poneyland"], 42);
 
 Ух ты! Переделываю свой код вот с такого:
 
-```
+```rust
    for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -191,7 +191,7 @@ assert_eq!(map["poneyland"], 42);
 
 на такой:
 
-```
+```rust
     for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -208,7 +208,7 @@ assert_eq!(map["poneyland"], 42);
 
 > *...подсчитайте, сколько ID **содержат какую-нибудь букву ровно два раза**, и отдельно — сколько **содержат какую-нибудь букву ровно три раза**. **Перемножив эти два числа**, вы получите \[ответ\]...*
 
-```
+```python
 # pseudocode
 
 seen_two_letters = 0
@@ -225,7 +225,7 @@ print seen_two_letters * seen_three_letters
 
 Переводим на Rust:
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -259,7 +259,7 @@ fn part_one() {
 
 Запускаем:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs

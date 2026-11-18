@@ -1,17 +1,54 @@
 base_url = "https://antono.info"
-title = "Anton Vasiljev"
-description = "Trivial things about software development"
-default_language = "en"
+title = "Antono Vasiljev"
+description = "Trivialaĵoj pri programado"
+# "und" (undetermined) is a hidden default: it only renders the root home page,
+# so every language (eo included) lives under its own prefix: /eo/, /en/, /ru/.
+default_language = "und"
 compile_sass = false
 build_search_index = false
+generate_feeds = false
+
+[markdown.highlighting]
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+# root home page ("und") is the Esperanto one
+[translations]
+sections_label = "Sekcioj"
+elsewhere = "Aliloke"
+site_nav_label = "Retejo"
+pager_label = "Najbaraj afiŝoj"
+older = "Pli frue"
+newer = "Pli poste"
+name = "Antono Vasiljev"
+description = "Antono Vasiljev — persona paĝo kun ligiloj al Mastodon, GitHub, SoundCloud kaj blogo."
+blog = "Blogo"
+blog_description = "Trivialaĵoj pri programado"
+tags = "Etikedoj"
+tagged = "Afiŝoj kun etikedo"
+updated = "ĝisdatigita"
+feed = "Atom-fluo"
+mirror_note = "Ĉi tiu afiŝo ankoraŭ ne estas tradukita. Jen la originalo:"
+language_name = "Esperanto"
+language_name_en = "angle"
+language_name_ru = "ruse"
+language_name_eo = "esperante"
+languages_label = "Lingvo"
+
+[languages.en]
+title = "Anton Vasiljev"
+description = "Trivial things about software development"
 generate_feeds = true
 feed_filenames = ["atom.xml"]
 taxonomies = [{ name = "tags", feed = true }]
 
-[markdown.highlighting]
-theme = "github-light"
-
-[translations]
+[languages.en.translations]
+sections_label = "Sections"
+elsewhere = "Elsewhere"
+site_nav_label = "Site"
+pager_label = "Pages"
+older = "Older"
+newer = "Newer"
 name = "Anton Vasiljev"
 description = "Anton Vasiljev — personal page with links to Mastodon, GitHub, SoundCloud and blog."
 blog = "Blog"
@@ -35,6 +72,12 @@ feed_filenames = ["atom.xml"]
 taxonomies = [{ name = "tags", feed = true }]
 
 [languages.ru.translations]
+sections_label = "Разделы"
+elsewhere = "Я в сети"
+site_nav_label = "Сайт"
+pager_label = "Соседние записи"
+older = "Раньше"
+newer = "Позже"
 name = "Антон Васильев"
 description = "Антон Васильев — личная страница со ссылками на Mastodon, GitHub, SoundCloud и блог."
 blog = "Блог"
@@ -58,6 +101,12 @@ feed_filenames = ["atom.xml"]
 taxonomies = [{ name = "tags", feed = true }]
 
 [languages.eo.translations]
+sections_label = "Sekcioj"
+elsewhere = "Aliloke"
+site_nav_label = "Retejo"
+pager_label = "Najbaraj afiŝoj"
+older = "Pli frue"
+newer = "Pli poste"
 name = "Antono Vasiljev"
 description = "Antono Vasiljev — persona paĝo kun ligiloj al Mastodon, GitHub, SoundCloud kaj blogo."
 blog = "Blogo"

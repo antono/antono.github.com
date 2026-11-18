@@ -15,7 +15,7 @@ teletype = "https://blog.antono.info/rJlqpIRJ4"
 
 Doing [puzzle #2 of advent of code](https://adventofcode.com/2018/day/2) challenge in Rust. The puzzle is pretty simple. Input looks like this:
 
-```
+```text
 mvgowxqubnhaefjslkjlrptzyi
 pvgowlqubnhaefmslkjdrpteyi
 ovgowoqubnhaefmslkjnrptzyi
@@ -31,7 +31,7 @@ The task is:
 
 Pseudocode solution would look like:
 
-```
+```python
 for line in input
    counters = count_letters(line)
 
@@ -49,7 +49,7 @@ print seen_two_letters * seen_three_letters
 
 Let's do it in rust. Without much optimization i going to use vector fo [HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html)s to store char counts for each line. Then iterate over them and count hashes having 2 or 3 among values.
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -71,10 +71,10 @@ fn part_one() {
 
 Running the code:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:57:32
    |
@@ -86,7 +86,7 @@ also borrowed as immutable
 59 |             };
    |             - immutable borrow ends here
 
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:58:25
    |
@@ -120,7 +120,7 @@ So one of approaches is to avoid borrowing hash value for reading is just copy t
 
 I'll use the method when getting hash value:
 
-```
+```rust
 fn part_one() {
     let input = utils::read_puzzle_input(2);
 
@@ -141,7 +141,7 @@ fn part_one() {
 
 Running the code:
 
-```
+```console
 cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs
@@ -163,7 +163,7 @@ cargo run --bin 2
 
 It worked. The only thing is i doing copy of value each time i need to avoid read only borrowing. One smart person suggested me to use [HashMap#entry()](https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.entry) in order to get hash Entry for in place modification. Entry itself has a lot of useful methods. [Entry#and_modify()](https://doc.rust-lang.org/std/collections/hash_map/enum.Entry.html#method.and_modify) looks exactly what i need. Examples from docs:
 
-```
+```rust
 use std::collections::HashMap;
 
 let mut map: HashMap<&str, u32> = HashMap::new();
@@ -177,7 +177,7 @@ assert_eq!(map["poneyland"], 42);
 
 Wow. I'll change my code a from this:
 
-```
+```rust
    for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -192,7 +192,7 @@ Wow. I'll change my code a from this:
 
 to this:
 
-```
+```rust
     for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -209,7 +209,7 @@ Ok. Time to finish the AOC puzzle. I counted all letters in all ids. Now i need 
 
 > *...count the number that have an ID **containing exactly two of any letter** and then separately count those with **exactly three of any letter**. You can **multiply those two counts together** to get \[an answer\]...*
 
-```
+```python
 # pseudocode
 
 seen_two_letters = 0
@@ -226,7 +226,7 @@ print seen_two_letters * seen_three_letters
 
 Converting to rust:
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -260,7 +260,7 @@ fn part_one() {
 
 Running:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs
@@ -274,4 +274,4 @@ The number accepted!
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

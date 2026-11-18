@@ -4,8 +4,47 @@
     {
       "name": "zola",
       "runtimeExecutable": "nix",
-      "runtimeArgs": ["run", "nixpkgs#zola", "--", "serve", "--port", "1111"],
+      "runtimeArgs": [
+        "run",
+        "nixpkgs#zola",
+        "--",
+        "serve",
+        "--port",
+        "1111"
+      ],
       "port": 1111
+    },
+    {
+      "name": "zola-tailnet",
+      "runtimeExecutable": "nix",
+      "runtimeArgs": [
+        "run",
+        "nixpkgs#zola",
+        "--",
+        "serve",
+        "--port",
+        "1111",
+        "--base-url",
+        "https://beast.shad-prometheus.ts.net:8443",
+        "--no-port-append"
+      ],
+      "port": 1111
+    },
+    {
+      "name": "zola-local",
+      "runtimeExecutable": "nix",
+      "runtimeArgs": [
+        "run",
+        "nixpkgs#zola",
+        "--",
+        "serve",
+        "--port",
+        "1112",
+        "--output-dir",
+        "/tmp/claude-1000/-home-antono--claude-spares-spare-Vm6Mlw/2c82c549-8ade-47f1-863b-68fe7f654978/scratchpad/public-local",
+        "--force"
+      ],
+      "port": 1112
     }
   ]
 }

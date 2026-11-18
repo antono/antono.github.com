@@ -54,14 +54,14 @@ La kompleta ZMK-agordo de ĉiu klavaro — `west.yml`, `boards/`, klavmapoj, `.c
 
 Ĝi konstruas ĉion per unu komando.
 
-```
+```sh
 nix build               # all firmware → ./result (combined .uf2 dir)
 nix build .#dao         # or just one
 ```
 
 La rezulto estas unu dosierujo kun stabilaj, homlegeblaj dosiernomoj — ne plu necesas fosi inter artefaktoj `zmk_left.uf2`, scivolante, de kiu klavaro ili venis:
 
-```
+```text
 ergonaut_one_left.uf2   ergonaut_one_right.uf2   ergonaut_one_settings_reset.uf2
 tk44.uf2
 mriya46_left.uf2        mriya46_right.uf2        mriya46_settings_reset.uf2
@@ -71,7 +71,7 @@ charybdis_mini_left.uf2 charybdis_mini_right.uf2 charybdis_mini_settings_reset.u
 
 Ĝi skribas la mikroprogramon rekte el la komandlinio.
 
-```
+```sh
 nix run .#flash-dao        # prompts for left, then right
 nix run .#flash-tk44
 nix run .#flash-dao-reset  # settings reset, built on nice_nano_v2
@@ -79,7 +79,7 @@ nix run .#flash-dao-reset  # settings reset, built on nice_nano_v2
 
 Ĝi desegnas diagramojn de la klavmapoj. La README de ĉiu klavaro enhavas SVG-bildon de la aranĝo, generitan de [keymap-drawer](https://github.com/caksoylar/keymap-drawer) rekte el la enkopiita klavmapo:
 
-```
+```sh
 nix run .#draw-keymaps
 ```
 

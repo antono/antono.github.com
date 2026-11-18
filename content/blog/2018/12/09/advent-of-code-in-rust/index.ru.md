@@ -34,7 +34,7 @@ teletype = "https://blog.antono.info/rysyH35JN"
 
 Затем сгенерировал новый проект замечательным инструментом [cargo](https://doc.rust-lang.org/cargo/):
 
-```
+```console
 cargo new aoc2018
 cd aoc2018
 tree .
@@ -58,8 +58,8 @@ Cargo — встроенный в Rust пакетный менеджер и си
 
 Сгенерированный по умолчанию код — это программа «Hello World», и запустить её проще простого:
 
-```
-cargo run  
+```console
+cargo run
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
      Running `target/debug/aoc2018`
 Hello, world!
@@ -71,9 +71,9 @@ Hello, world!
 
 Перестраиваем проект:
 
-```
-cd src 
-mkdir bin 
+```console
+cd src
+mkdir bin
 mv main.rs bin/1.rs
 cd ../../
 cargo run
@@ -89,7 +89,7 @@ Hello, world!
 
 Если коротко: на входе список чисел, по одному на строку, каждое со знаком плюс или минус. Ответ — их сумма. Входные данные выглядят так:
 
-```
+```text
 +13
 +9
 +8
@@ -151,7 +151,7 @@ fn main() {
 
 Запускаем:
 
-```
+```console
  cargo run
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.92 secs

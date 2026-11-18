@@ -12,7 +12,7 @@ teletype = "https://blog.antono.info/rkoLYw01V"
 +++
 Post la unua enigmo de Advent of Code mi trovis funkcion, kiun indas reuzi:
 
-```
+```rust
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -47,7 +47,7 @@ Rust permesas sufiĉe flekseblan aranĝon de moduloj, kaj ekzistas kelkaj regulo
 2. aldonis antaŭ la funkcio la ŝlosilvorton pub: pub fn read_puzzle_input...
 3. kaj aldonis etan fragmenton al Cargo.toml:
 
-```
+```toml
 [lib]
 name = "utils"
 path = "src/utils.rs"
@@ -55,7 +55,7 @@ path = "src/utils.rs"
 
 Nun, por uzi funkciojn el tiu biblioteko, mi devas aldoni deklaron de la kesto (crate) komence de mia dosiero kaj antaŭmeti la nomspacon utils al la funkcivoko:
 
-```
+```rust
 extern crate utils;
 
 fn part_one() {

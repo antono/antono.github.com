@@ -1,14 +1,15 @@
-{# Language switcher and hreflang links for anything that has `translations`
-   (pages and sections). Usage: {% include "translations.html" %} with
-   `translations` set. #}
-{%- for code in ["en", "ru", "eo"] %}
+{# Language switcher for anything that has `translations` (pages and
+   sections). Usage: {% include "translations.html" %} with `translations` set.
+   The root home page is the hidden "und" language and stands for Esperanto. #}
+{%- for code in ["eo", "en", "ru"] %}
 {%- for t in translations %}
-{%- if t.lang != code %}
-{%- elif code == lang %}
+{%- if t.lang == "eo" and "content/_index.eo.md" in t.path %}{# redirects to the root, which is listed as "und" #}
+{%- elif t.lang == code or (t.lang == "und" and code == "eo") %}
+{%- if t.lang == lang %}
 <span lang="{{ code }}" aria-current="page">{{ trans(key='language_name', lang=code) }}</span>
 {%- else %}
 <a href="{{ t.permalink | safe }}" hreflang="{{ code }}" lang="{{ code }}">{{ trans(key='language_name', lang=code) }}</a>
 {%- endif %}
+{%- endif %}
 {%- endfor %}
-{%- if not loop.last %} · {% endif %}
 {%- endfor %}

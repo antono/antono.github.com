@@ -12,7 +12,7 @@ teletype = "https://blog.antono.info/rkoLYw01V"
 +++
 После первой задачки Advent of Code у меня нашлась функция, которую стоит переиспользовать:
 
-```
+```rust
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -47,7 +47,7 @@ fn read_puzzle_input(number: u8) -> String {
 2. добавил перед функцией ключевое слово pub: pub fn read_puzzle_input...
 3. и дописал небольшой кусочек в Cargo.toml:
 
-```
+```toml
 [lib]
 name = "utils"
 path = "src/utils.rs"
@@ -55,7 +55,7 @@ path = "src/utils.rs"
 
 Теперь, чтобы пользоваться функциями из этой библиотеки, нужно добавить в начало файла объявление крейта и вызывать функцию через пространство имён utils:
 
-```
+```rust
 extern crate utils;
 
 fn part_one() {

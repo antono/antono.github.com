@@ -1,0 +1,13 @@
+{# Cards for the site's own sections (blog, later projects, …): every
+   subsection of the language root shows up here, ordered by `weight`.
+   Usage: set `root` to the language's root section and `root_lang` to its
+   language, then include. #}
+<nav class="sections" aria-label="{{ trans(key='sections_label', lang=lang) }}">
+  {%- for path in root.subsections %}
+  {%- set s = get_section(path=path, lang=root_lang) %}
+  <a class="card" href="{{ s.permalink | safe }}">
+    <strong>{{ s.title }} <span aria-hidden="true">→</span></strong>
+    {%- if s.description %}<span>{{ s.description }}</span>{% endif %}
+  </a>
+  {%- endfor %}
+</nav>

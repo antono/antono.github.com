@@ -22,7 +22,7 @@ import bpy
 
 def proxy_gen_all(proxy_sizes=[25], force=False):
     """ Rebuilds proxies for all strips"""
-    
+
     for scene in bpy.data.scenes:
         seqs = scene.sequence_editor.sequences_all
 
@@ -30,27 +30,27 @@ def proxy_gen_all(proxy_sizes=[25], force=False):
             # operate only on MOVIE strips
             if seq.type == 'MOVIE':
                 seq.use_proxy = True
-            
+
                 # if we pregenerate proxies in parallel externally
                 if force:
                     seq.proxy.use_overwrite = True
-                
+
                 if 25 in proxy_sizes:
                     seq.proxy.build_25 = True
 
                 if 50 in proxy_sizes:
                     seq.proxy.build_50 = True
-                    
+
                 if 75 in proxy_sizes:
                     seq.proxy.build_75 = True
 
                 if 100 in proxy_sizes:
                     seq.proxy.build_100 = True
-                
+
                 seq.proxy.use_overwrite = False
-    
+
     bpy.ops.sequencer.rebuild_proxy()
-    
+
 proxy_gen_all([25, 50])
 ```
 

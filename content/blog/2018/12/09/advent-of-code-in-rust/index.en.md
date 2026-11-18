@@ -35,7 +35,7 @@ First I installed rust using [rustup](https://rustup.rs/) tool. Easy one liner t
 
 Next i generated new project using awesome [cargo](https://doc.rust-lang.org/cargo/) tool:
 
-```
+```console
 cargo new aoc2018
 cd aoc2018
 tree .
@@ -59,8 +59,8 @@ Other languages provide different tools for above mentioned tasks but approach t
 
 Default generated code contains "Hello World" program and its as easy to run as:
 
-```
-cargo run  
+```console
+cargo run
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
      Running `target/debug/aoc2018`
 Hello, world!
@@ -72,9 +72,9 @@ Next I going to change my project layout to have one binary output for each puzz
 
 Reorganizing the project:
 
-```
-cd src 
-mkdir bin 
+```console
+cd src
+mkdir bin
 mv main.rs bin/1.rs
 cd ../../
 cargo run
@@ -90,7 +90,7 @@ It's time to get into code.
 
 Making long story short: you getting list of newline separated numbers prefixed with plus or minus signs. Solution is sum of them. Input looks like:
 
-```
+```text
 +13
 +9
 +8
@@ -152,7 +152,7 @@ fn main() {
 
 Running the code:
 
-```
+```console
  cargo run
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.92 secs
@@ -195,4 +195,4 @@ I will document the answers in my next posts.
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

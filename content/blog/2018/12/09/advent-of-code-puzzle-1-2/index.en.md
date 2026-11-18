@@ -17,13 +17,13 @@ teletype = "https://blog.antono.info/rkbphGsyE"
 
 ---
 
-Solving part 2 of day 1 in [advent of code challenge](https://adventofcode.com/). Puzzle is based on [day 1 part 1](@/blog/2018/12/09/advent-of-code-in-rust/index.md).
+Solving part 2 of day 1 in [advent of code challenge](https://adventofcode.com/). Puzzle is based on [day 1 part 1](@/blog/2018/12/09/advent-of-code-in-rust/index.en.md).
 
 The task is:
 
 > You notice that the device repeats the same frequency change list over and over. To calibrate the device, you need to find the first frequency it reaches twice.
 
-So taking a look to solution [from part one](@/blog/2018/12/09/advent-of-code-in-rust/index.md):
+So taking a look to solution [from part one](@/blog/2018/12/09/advent-of-code-in-rust/index.en.md):
 
 ```rust
 fn main() {
@@ -125,7 +125,7 @@ fn part_two() {
 
 Running the code:
 
-```
+```console
 cargo run
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs
@@ -150,4 +150,4 @@ Code pushed to GitHub.
 
 ---
 
-[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.md)
+[Disclaimer](@/blog/2018/12/09/aoc-posts-disclaimer/index.en.md)

@@ -66,7 +66,7 @@ Depende de la rezulto de la operacio, plenumiĝos nur unu branĉo.
 
 Do kio estas la celo de **.expect()** en ĉi tiu kodo?
 
-```
+```rust
 File::open(filename).expect("error message");
 ```
 

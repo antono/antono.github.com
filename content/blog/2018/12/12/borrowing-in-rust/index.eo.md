@@ -14,7 +14,7 @@ teletype = "https://blog.antono.info/rJlqpIRJ4"
 
 Mi solvas per Rust [la duan enigmon de Advent of Code](https://adventofcode.com/2018/day/2). La enigmo estas sufiĉe simpla. La enigo aspektas jene:
 
-```
+```text
 mvgowxqubnhaefjslkjlrptzyi
 pvgowlqubnhaefmslkjdrpteyi
 ovgowoqubnhaefmslkjnrptzyi
@@ -30,7 +30,7 @@ La tasko:
 
 Per pseŭdokodo la solvo aspektus proksimume jene:
 
-```
+```python
 for line in input
    counters = count_letters(line)
 
@@ -48,7 +48,7 @@ print seen_two_letters * seen_three_letters
 
 Nun en Rust. Sen speciala optimumigo mi konservos la nombrojn de signoj en ĉiu linio en vektoro de [HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html)-oj. Poste mi trairos ilin kaj kalkulos la haŝtabelojn, kiuj havas 2 aŭ 3 inter siaj valoroj.
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -70,10 +70,10 @@ fn part_one() {
 
 Mi lanĉas la kodon:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:57:32
    |
@@ -85,7 +85,7 @@ also borrowed as immutable
 59 |             };
    |             - immutable borrow ends here
 
-error[E0502]: cannot borrow `counters` as mutable because it is 
+error[E0502]: cannot borrow `counters` as mutable because it is
 also borrowed as immutable
   --> src/bin/2.rs:58:25
    |
@@ -119,7 +119,7 @@ Unu el la manieroj eviti pruntadon de la valoro por legado estas simple kopii ĝ
 
 Mi uzos tiun metodon, kiam mi prenas valoron el la haŝtabelo:
 
-```
+```rust
 fn part_one() {
     let input = utils::read_puzzle_input(2);
 
@@ -140,7 +140,7 @@ fn part_one() {
 
 Mi lanĉas la kodon:
 
-```
+```console
 cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs
@@ -162,7 +162,7 @@ cargo run --bin 2
 
 Funkcias! La sola ĝeno: mi devas ĉiufoje kopii la valoron nur por eviti nurlegan pruntadon. Iu saĝulo konsilis al mi uzi [HashMap#entry()](https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.entry), kiu donas Entry por modifi la valoron en la haŝtabelo surloke. Entry mem havas multajn utilajn metodojn. [Entry#and_modify()](https://doc.rust-lang.org/std/collections/hash_map/enum.Entry.html#method.and_modify) ŝajnas ĝuste tio, kion mi bezonas. Ekzemplo el la dokumentaro:
 
-```
+```rust
 use std::collections::HashMap;
 
 let mut map: HashMap<&str, u32> = HashMap::new();
@@ -176,7 +176,7 @@ assert_eq!(map["poneyland"], 42);
 
 Ŭaŭ! Mi ŝanĝas mian kodon de ĉi tio:
 
-```
+```rust
    for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -191,7 +191,7 @@ assert_eq!(map["poneyland"], 42);
 
 al ĉi tio:
 
-```
+```rust
     for line in input.lines() {
         let mut counters: HashMap<char, u8> = HashMap::new();
 
@@ -208,7 +208,7 @@ Bone. Estas tempo fini la AOC-enigmon. Mi kalkulis ĉiujn literojn en ĉiuj iden
 
 > *...kalkulu, kiom da identigiloj **enhavas iun ajn literon ekzakte dufoje**, kaj aparte kalkulu tiujn, kiuj **enhavas iun ajn literon ekzakte trifoje**. **Multiplikinte tiujn du nombrojn**, vi ricevos \[la respondon\]...*
 
-```
+```python
 # pseudocode
 
 seen_two_letters = 0
@@ -225,7 +225,7 @@ print seen_two_letters * seen_three_letters
 
 Nun la sama en Rust:
 
-```
+```rust
 extern crate utils;
 use std::collections::HashMap;
 
@@ -259,7 +259,7 @@ fn part_one() {
 
 Lanĉo:
 
-```
+```console
 ➜  aoc2018 git:(master) ✗ cargo run --bin 2
    Compiling aoc2018 v0.1.0 (file:///Users/antono/Code/rust/aoc2018)
     Finished dev [unoptimized + debuginfo] target(s) in 0.62 secs

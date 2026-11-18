@@ -66,7 +66,7 @@ fn main() {
 
 Так зачем же в этом коде **.expect()**?
 
-```
+```rust
 File::open(filename).expect("error message");
 ```
 

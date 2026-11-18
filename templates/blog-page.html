@@ -6,31 +6,43 @@
 {% block languages %}{% set translations = page.translations %}{% include "translations.html" %}{% endblock %}
 
 {% block body %}
-<div class="wrap">
-  {% include "site-header.html" %}
   <main>
-    {%- if page.extra.mirror_of %}
-    <p><em>
-      {{ trans(key='mirror_note', lang=lang) }}
-      {%- for t in page.translations %}{% if t.lang == page.extra.mirror_of %}
-      <a href="{{ t.permalink | safe }}" hreflang="{{ t.lang }}">{{ trans(key='language_name', lang=t.lang) }}</a>
-      {%- endif %}{% endfor %}
-    </em></p>
-    {%- endif %}
-
     <article lang="{{ page.extra.lang | default(value=lang) }}">
-      <h1>{{ page.title }}</h1>
-      <p lang="{{ lang }}">
-        <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
-        {%- if page.updated %} · {{ trans(key='updated', lang=lang) }} <time datetime="{{ page.updated }}">{{ page.updated | date(format="%Y-%m-%d") }}</time>{% endif %}
-        {%- if page.taxonomies.tags %} ·
-        {%- for tag in page.taxonomies.tags %}
-        <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=lang) }}">#{{ tag }}</a>
-        {%- endfor %}
+      <header class="post-header">
+        <h1>{{ page.title }}</h1>
+        <p class="meta" lang="{{ lang }}">
+          <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+          {%- if page.updated and page.updated != page.date %} · {{ trans(key='updated', lang=lang) }} <time datetime="{{ page.updated }}">{{ page.updated | date(format="%Y-%m-%d") }}</time>{% endif %}
+          {%- for tag in page.taxonomies.tags | default(value=[]) %} ·
+          <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=lang) }}">#{{ tag }}</a>
+          {%- endfor %}
+        </p>
+        {%- if page.extra.mirror_of %}
+        <p class="note" lang="{{ lang }}">
+          {{ trans(key='mirror_note', lang=lang) }}
+          {%- for t in page.translations %}{% if t.lang == page.extra.mirror_of %}
+          <a href="{{ t.permalink | safe }}" hreflang="{{ t.lang }}">{{ trans(key='language_name', lang=t.lang) }}</a>
+          {%- endif %}{% endfor %}
+        </p>
         {%- endif %}
-      </p>
+      </header>
+
       {{ page.content | safe }}
     </article>
+
+    {%- if page.higher or page.lower %}
+    <nav class="pager" aria-label="{{ trans(key='pager_label', lang=lang) }}">
+      {%- if page.higher %}
+      <a class="prev" href="{{ page.higher.permalink | safe }}" rel="prev">
+        <small>← {{ trans(key='older', lang=lang) }}</small>{{ page.higher.title }}
+      </a>
+      {%- endif %}
+      {%- if page.lower %}
+      <a class="next" href="{{ page.lower.permalink | safe }}" rel="next">
+        <small>{{ trans(key='newer', lang=lang) }} →</small>{{ page.lower.title }}
+      </a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
   </main>
-</div>
 {% endblock %}

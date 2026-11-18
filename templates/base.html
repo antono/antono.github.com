@@ -1,34 +1,57 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}">
+<html lang="{% if lang == "und" %}eo{% else %}{{ lang }}{% endif %}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="{% block description %}{{ trans(key='description', lang=lang) }}{% endblock %}" />
+  <meta name="color-scheme" content="light dark" />
 
   <link href="{{ get_url(path='favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&amp;family=Philosopher&amp;display=swap" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&amp;family=Ubuntu:wght@400;700&amp;display=swap" rel="stylesheet" type="text/css" />
   <link href="{{ get_url(path='style.css', cachebust=true) }}" rel="stylesheet" type="text/css" />
-  <link rel="alternate" type="application/atom+xml" title="{{ trans(key='feed', lang=lang) }}" href="{{ get_url(path='atom.xml', lang=lang) }}" />
+  <link rel="alternate" type="application/atom+xml" title="{{ trans(key='feed', lang=lang) }}" href="{% if lang == "und" %}{{ get_url(path='atom.xml', lang='eo') }}{% else %}{{ get_url(path='atom.xml', lang=lang) }}{% endif %}" />
   {%- block alternates %}{% endblock %}
 
   <title>{% block title %}{{ trans(key='name', lang=lang) }}{% endblock %}</title>
   {%- block head %}{% endblock %}
 </head>
 
-<body>
-  {% block body %}{% endblock %}
+<body class="{% block body_class %}{% endblock %}">
+  <div class="{% block shell_class %}wrap{% endblock %}">
+    <header class="site-header">
+      {%- block site_nav %}
+      <nav aria-label="{{ trans(key='site_nav_label', lang=lang) }}">
+        <a class="site-name" href="{% if lang == "eo" %}{{ get_url(path='/') }}/{% else %}{{ get_url(path='/', lang=lang) }}/{% endif %}">{{ trans(key='name', lang=lang) }}</a>
+        <a href="{{ get_url(path='@/blog/_index.md', lang=lang) }}">{{ trans(key='blog', lang=lang) }}</a>
+        <a href="{{ get_url(path='tags/', lang=lang) }}">{{ trans(key='tags', lang=lang) }}</a>
+      </nav>
+      {%- endblock %}
+      <nav class="lang" aria-label="{{ trans(key='languages_label', lang=lang) }}">
+        {#- default switcher (tag pages have no translations): go to that language's tags #}
+        {%- block languages %}
+        {%- for code in ["eo", "en", "ru"] %}
+        {%- if code == lang %}
+        <span lang="{{ code }}" aria-current="page">{{ trans(key='language_name', lang=code) }}</span>
+        {%- else %}
+        <a href="{{ get_url(path='tags/', lang=code) }}" hreflang="{{ code }}" lang="{{ code }}">{{ trans(key='language_name', lang=code) }}</a>
+        {%- endif %}
+        {%- endfor %}
+        {%- endblock %}
+      </nav>
+    </header>
 
-  <nav id="languages" aria-label="{{ trans(key='languages_label', lang=lang) }}">
-    {%- block languages %}
-    {%- for code in ["en", "ru", "eo"] %}
-    {%- if code == lang %}
-    <span lang="{{ code }}" aria-current="page">{{ trans(key='language_name', lang=code) }}</span>
-    {%- else %}
-    <a href="{{ get_url(path='/', lang=code) }}" hreflang="{{ code }}" lang="{{ code }}">{{ trans(key='language_name', lang=code) }}</a>
-    {%- endif %}
-    {%- if not loop.last %} · {% endif %}
-    {%- endfor %}
+    {% block body %}{% endblock %}
+
+    {%- block footer %}
+    <footer class="site-footer">
+      {{ trans(key='name', lang=lang) }} ·
+      <a rel="me" href="https://mastodon.social/@antono">Mastodon</a> ·
+      <a rel="me" href="https://github.com/antono/">GitHub</a> ·
+      <a href="{{ get_url(path='atom.xml', lang=lang) }}">{{ trans(key='feed', lang=lang) }}</a>
+    </footer>
     {%- endblock %}
-  </nav>
+  </div>
 </body>
 </html>

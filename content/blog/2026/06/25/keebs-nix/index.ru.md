@@ -54,14 +54,14 @@ teletype = "https://blog.antono.info/keebs-nix"
 
 Собирает всё одной командой.
 
-```
+```sh
 nix build               # all firmware → ./result (combined .uf2 dir)
 nix build .#dao         # or just one
 ```
 
 На выходе — одна директория со стабильными, человекочитаемыми именами файлов. Больше не надо копаться в артефактах `zmk_left.uf2` и гадать, от какой они клавы:
 
-```
+```text
 ergonaut_one_left.uf2   ergonaut_one_right.uf2   ergonaut_one_settings_reset.uf2
 tk44.uf2
 mriya46_left.uf2        mriya46_right.uf2        mriya46_settings_reset.uf2
@@ -71,7 +71,7 @@ charybdis_mini_left.uf2 charybdis_mini_right.uf2 charybdis_mini_settings_reset.u
 
 Прошивает из командной строки.
 
-```
+```sh
 nix run .#flash-dao        # prompts for left, then right
 nix run .#flash-tk44
 nix run .#flash-dao-reset  # settings reset, built on nice_nano_v2
@@ -79,7 +79,7 @@ nix run .#flash-dao-reset  # settings reset, built on nice_nano_v2
 
 Рисует схемы кеймапов. В README каждой клавиатуры встроена SVG-схема раскладки, которую [keymap-drawer](https://github.com/caksoylar/keymap-drawer) генерирует прямо из завендоренного кеймапа:
 
-```
+```sh
 nix run .#draw-keymaps
 ```
 
